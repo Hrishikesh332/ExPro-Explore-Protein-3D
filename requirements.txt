@@ -1,8 +1,6 @@
 streamlit
 streamlit_lottie
-json
 streamlit_option_menu 
-io
 stmol 
 py3Dmol
 biotite
