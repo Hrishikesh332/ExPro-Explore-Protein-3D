@@ -1,8 +1,14 @@
 streamlit
-pandas
-streamlit_option_menu
 streamlit_lottie
-qrcode
+json
+streamlit_option_menu 
+io
+stmol 
+py3Dmol
+biotite
+requests
+
+
 
 
 
