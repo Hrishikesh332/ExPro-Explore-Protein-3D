@@ -94,7 +94,7 @@ Run Project
 
 🔆 [@Hrishikesh Yadav](https://www.github.com/hrishikesh332)
 
-🔆 [@Shravya Shetty](https://www.github.com/hrishikesh332)
+🔆 [@Shravya Shetty](https://www.github.com/shravya-34)
 
 
 
