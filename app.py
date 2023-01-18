@@ -87,6 +87,7 @@ if (selected=="Explore"):
 
     sequence = "MGSSHHHHHHSQDLMVTSTYIPMSQRRSWADVKPIMQDDGPNPVVPIMYSEEYKDAMDYFRAIAAKEEKSERALELTEIIVRMNPAHYTVWQYRFSLLTSLNKSLEDELRLMNEFAVQNLKSYQVWHHRLLLLDRISPQDPVSEIEYIHGSLLPDPKNYHTWAYLHWLYSHFSTLGRISEAQWGSELDWCNEMLRVDGRNNSAWGWRWYLRVSRPGAETSSRSLQDELIYILKSIHLIPHNVSAWNYLRGFLKHFSLPLVPILPAILPYTASKLNPDIETVEAFGFPMPSDPLPEDTPLPVPLALEYLADSFIEQNRVDDAAKVFEKLSSEYDQMRAGYWEFRRRECAE"
     seq = st.text_area('Enter the protein sequence to predict: ', sequence, height=275)
+    st.caption("You can also from you're own sequence and explore the molecule:")
 
     def render(pdb):
         pview = py3Dmol.view()
@@ -118,6 +119,45 @@ if (selected=="Explore"):
         st.code(f'plDDT: {b_value}')
 
     predict = st.button('Predict', on_click=generate)
+
+    st.header("Time to Explore more 🔬:")
+    st.markdown("---")
+    st.subheader("🟥 Example 1:")
+ 
+  
+    st.write("""Gene: 'thrL'""")
+    st.write("""Product: 'thr operon leader peptide'""")
+    st.write("""Protein id: 'BAO32072.1'""")
+    st.write("Sequence:")
+    st.code('MRNISLKTTIITTTDTTGNGAG')
+
+    st.markdown("---")
+    st.subheader("🟥 Example 2:")
+    st.write("""Gene: 'thrA'""")
+    st.write("""Product: 'fused aspartokinase I and homoserine'""")
+    st.write("""Protein id: 'BAO32073.1'""")
+    st.write("Sequence:")
+    st.code('''      MRVLKFGGTSVANAERFLRVADIMESNARQGQVATVLSAPAKIT
+                     NHLVAMIDKTVAGQDILPNISDAERIFADLLSGLAQALPGFEYDRLKSVVDQEFAQLK
+                     QVLHGVSLLGQCPDSVNAAIICRGEKLSIAIMEGVFRAKGYPVTVINPVEKLLAQGHY
+                     LESTVDIAESTLRIAAAAIPADHIVLMAGFTAGNDKGELVVLGRNGSDYSAAVLAACL
+                     RADCCEIWTDVDGVYTCDPRTVPDARLLKSMSYQEAMELSYFGAKVLHPRTITPIAQF
+                     QIPCLIKNTSNPQAPGTLIGKDSTDDAMPVKGITNLNNMAMINVSGPGMKGMVGMAAR
+                     VFAVMSRAGISVVLITQSSSEYSISFCVPQGELLRARRALEEEFYLELKDGVLDPLDV
+                     MERLAIISVVGDGMRTLRGISARFFSALARANINIVAIAQGSSERSISVVVSNESATT
+                     GVRVSHQMLFNTDQVIEVFVIGVGGVGGALIEQIYRQQPWLKQKHIDLRVCGIANSRV
+                     MLTNVHGIALDSWRDELAGAQEPFNLGRLIRLVKEYHLLNPVIVDCTSSQAVADQYVD
+                     FLADGFHVVTPNKKANTSSMNYYQQLRAAAAGSHRKFLYDTNVGAGLPVIENLQNLLN
+                     AGDELVRFSGILSGSLSFIFGKLDEGLSLSAATLQARANGYTEPDPRDDLSGMDVARK
+                     LLILAREAGYKLELSDIEVESVLPPSFDASGDVDQFLARLPELDKEFARNVANAAEQG
+                     KVLRYVGLIDEGRCKVRIEAVDGNDPLYKVKNGENALAFYSRYYQPLPLVLRGYGAGN
+                     DVTAAGVFADLLRTLSWKLGV''')
+
+    st.markdown("---")
+    st.header("Time to Experiment and Cure World 🌎:")
+    st.write("Do visit [protein database](https://www.ncbi.nlm.nih.gov/protein) provided by National Library of Medicine, Protein database contains collection of sequences from various sources like translations from annotated coding regions in GenBank, RefSeq and TPA.")
+    st.write("Protein Structure helps to understand the functionality which is the major concern while deriving drugs.")
+    st.caption("Building world more better Discovering Drugs 💊")
 
     if predict:
         st.balloons()
