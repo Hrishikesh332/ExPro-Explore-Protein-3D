@@ -382,6 +382,14 @@ if (selected=="X-Mol"):
                 if (a=="1-ethenyl-2-hexenylcyclopropane"):
                     marks+=1
                 score(marks)
+
+    st.markdown("---")
+    st.subheader("Resources to follow up and learn more 📖")
+    st.warning("Nomenclature Part 1: (Previous Year MHT-CET)")
+    st.video('https://www.youtube.com/watch?v=mrHxq0jBRsw&t=1494s')
+    st.warning("Nomenclature Part 2: (Previous Year MHT-CET)")
+    st.video('https://www.youtube.com/watch?v=-P9JRYGSno8&t=1125s')
+
  
  
 
