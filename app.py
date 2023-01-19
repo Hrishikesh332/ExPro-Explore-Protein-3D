@@ -8,7 +8,9 @@ import py3Dmol
 import biotite.structure.io as bsio
 import requests
 from streamlit_lottie import st_lottie
-
+from stmol import showmol
+from rdkit import Chem
+from rdkit.Chem import AllChem
 
 page="""
 <style>
@@ -52,7 +54,7 @@ lottie_s=load_lottiefile("suggestion.json")
 
 selected = option_menu(
             menu_title=None,  
-            options=["Explore","ChemPlay", "Suggestion"],  
+            options=["Explore","ChemPlay","X-Mol", "Suggestion"],  
             icons=["badge-3d-fill", "joystick", "reply-all-fill"],  
             menu_icon="cast",  
             default_index=0,  
@@ -162,7 +164,40 @@ if (selected=="Explore"):
     if predict:
         st.balloons()
 
+if (selected=="ChemPlay"):
+    if 'num' not in st.session_state:
+        st.session_state.num = 0
 
+
+    choices1 = ['no answer', 'manila', 'tokyo', 'bangkok']
+    choices2 = ['no answer', 'thailand', 'japan', 'philippines']
+
+    qs1 = [('What is the capital of Japan', choices1),
+        ('What is the capital of Philippines', choices1),
+        ('What is the capital of Thailand', choices1)]
+    qs2 = [('What country has the highest life expectancy?', choices2),
+        ('What country has the highest population?', choices2),
+        ('What country has the highest oil deposits?', choices2)]
+
+
+    def main():
+        for _, _ in zip(qs1, qs2): 
+            placeholder = st.empty()
+            num = st.session_state.num
+            with placeholder.form(key=str(num)):
+                st.radio(qs1[num][0], key=num+1, options=qs1[num][1])
+                st.radio(qs2[num][0], key=num+1, options=qs2[num][1])          
+                        
+                if st.form_submit_button():
+                    st.session_state.num += 1
+                    if st.session_state.num >= 3:
+                        st.session_state.num = 0
+                    placeholder.empty()
+                else:
+                    st.stop()
+
+
+    main()
 
 if (selected=="Suggestion"):
     st.title("Suggestions:")
@@ -177,7 +212,45 @@ if (selected=="Suggestion"):
     key=None,
 )
     st.write("We are here to help you out, if you have any query/issues or wanted to add on any new features which would help others too. Do raise the issue here: [ExPro Issues](https://github.com/Hrishikesh332/ExPro-Explore-Protein-3D/issues)")
+
+if (selected=="X-Mol"):
     
+    def mol(smi):
+        mol = Chem.MolFromSmiles(smi)
+        mol = Chem.AddHs(mol)
+        AllChem.EmbedMolecule(mol)
+        molecule = Chem.MolToMolBlock(mol)
+        return molecule
+
+    def render(m):
+        mview = py3Dmol.view()
+        mview.addModel(m,'mol')
+        mview.setStyle({'stick':{}})
+        mview.setBackgroundColor('white')
+        mview.zoomTo()
+        showmol(mview,height=400,width=500)
+    st.markdown("<h1 style='text-align: center; '>X-Mol - Explore Molecular Structure </h1>", unsafe_allow_html=True)
+    col3, col4 = st.columns(2)
+    with col3:
+        st.text("")
+        st.text("")
+        st.markdown("![Alt Text](https://media.tenor.com/ZZl5JnTJo9oAAAAM/polar-molecules-partial-charges.gif)")
+    with col4:
+        st.subheader("Are you worried about remembering the Nomenclature, SMILES and Structure of Compounds ?")
+        st.write("Don't worry, Making logic clear will help you out to understand the structure in a more better way, Practicing ✍️ everyday can make you better drawing structure from SMILES")
+    st.markdown("---")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.write("Please do enter SMILES (Simplified Molecular-input Line Entry System) in the below Prompt 🧪")
+        st.caption("Go on and put the SMILES in the prompt to learn about the compound in a fun way with a smile 😊")
+        smiles=st.text_input("", 'CCO')
+
+    with col2:
+            struct=mol(smiles)
+            render(struct)
+        
+
+
 
 
 
