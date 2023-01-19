@@ -227,6 +227,7 @@ if (selected=="X-Mol"):
         mview.addModel(m,'mol')
         mview.setStyle({'stick':{}})
         mview.setBackgroundColor('white')
+        mview.zoom(1, 200)
         mview.zoomTo()
         showmol(mview,height=400,width=500)
     st.markdown("<h1 style='text-align: center; '>X-Mol - Explore Molecular Structure </h1>", unsafe_allow_html=True)
@@ -239,15 +240,159 @@ if (selected=="X-Mol"):
         st.subheader("Are you worried about remembering the Nomenclature, SMILES and Structure of Compounds ?")
         st.write("Don't worry, Making logic clear will help you out to understand the structure in a more better way, Practicing ✍️ everyday can make you better drawing structure from SMILES")
     st.markdown("---")
+
+
+    def iupac(smiles):
+        rep = "iupac_name"
+        url = nom.format(smiles, rep)
+        response = requests.get(url)
+        response.raise_for_status()
+        return response.text
+
     col1, col2 = st.columns(2)
     with col1:
         st.write("Please do enter SMILES (Simplified Molecular-input Line Entry System) in the below Prompt 🧪")
         st.caption("Go on and put the SMILES in the prompt to learn about the compound in a fun way with a smile 😊")
         smiles=st.text_input("", 'CCO')
+    
+        nom= "https://cactus.nci.nih.gov/chemical/structure/{0}/{1}"
+        predict = st.button('Draw')
+        st.text("")
+        st.text("")
+        st.write("Nomenclature:")
+        st.code(iupac(smiles))
 
     with col2:
             struct=mol(smiles)
-            render(struct)
+            
+            if predict:
+                render(struct)
+
+    st.markdown("---")
+    st.subheader("Time to learn smiles and get into the world of Molecules 🌎")
+    st.markdown("---")
+    st.subheader("I guess 🤔, you're ready now. To make your own smiles")
+
+    level = st.selectbox('How much ready are you ? Choose the Diffculty Level 🎚️:',('Easy 😅', 'Intermediate 😃', 'Difficult 💪', 'Extreme Difficult🤓'))
+    def score(marks):
+            if marks>1:
+                    st.warning(f'Congratulation 🎉, You scored {marks}/3')
+            else:
+                    st.warning(f'Do not worry, Go practice more!!! You scored {marks}/3')
+    if (level=="Easy 😅"):
+        st.subheader("Write the nomenclature of given SMILES:")
+        
+        col5, col6 = st.columns(2)
+        with col5:
+            st.text("")
+            st.text("")
+            st.text("")
+            st.write("Q1) CC")
+            st.text("")
+            st.text("")
+            st.text("")
+            st.write("Q2) CC=C")
+            st.text("")
+            st.text("")
+            st.text("")
+            st.write("Q3) CC(=O)O")
+        with col6:
+            marks=0
+    
+            a=st.text_input("Answer Q1:")
+            b=st.text_input("Answer Q2:")
+            c=st.text_input("Answer Q3:")
+            submit=st.button("Submit")
+            
+            if submit:
+                st.balloons()
+                if (a.lower()=="ethane"):
+                    marks+=1
+                    if (b.lower()=="prop-1-ene"):
+                        marks+=1
+                        if (c.lower()=="ethanoic acid"):
+                            marks+=1
+                score(marks)
+
+    if (level=="Intermediate 😃"):
+        st.subheader("Write the nomenclature of given structure:")
+        
+        col5, col6 = st.columns(2)
+        with col5:
+
+            st.write("Q1)")
+            st.image('q3.jpg')
+
+            st.write("Q2)")
+            st.image('q1.jpg')
+
+            st.write("Q3)")
+            st.image('q2.jpg')
+
+
+        with col6:
+            marks=0
+    
+            a=st.text_input("Answer Q1:")
+            st.text('')
+            st.text('')
+            st.text('')
+            st.text('')
+            st.text('')
+            st.text('')
+            b=st.text_input("Answer Q2:")
+            st.text('')
+            st.text('')
+            st.text('')
+            st.text('')
+            st.text('')
+            st.text('')
+            b=st.text_input("Answer Q3:")
+            submit=st.button("Submit")
+            
+            if submit:
+                st.balloons()
+                if (a=="pent-1-ene"):
+                    marks+=1
+                    if (b=="4-methlyhex-1-ene"):
+                        marks+=1
+                        if (c=="2-methylbut-2-ene"):
+                            marks+=1
+                score(marks)
+    if (level=="Extreme Difficult🤓"):
+        st.subheader("Write the nomenclature of given structure:")
+        
+        col5, col6 = st.columns(2)
+        with col5:
+
+            st.write("Q1)")
+            st.image('q4.jpg')
+
+
+        with col6:
+            marks=0
+    
+            a=st.text_input("Answer Q1:")
+            submit=st.button("Submit")
+            
+            if submit:
+                st.balloons()
+                if (a=="1-ethenyl-2-hexenylcyclopropane"):
+                    marks+=1
+                score(marks)
+ 
+ 
+
+
+
+            
+    
+
+
+    
+
+
+    
         
 
 
