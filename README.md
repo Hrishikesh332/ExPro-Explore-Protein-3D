@@ -20,7 +20,9 @@
   </p>
 </div>
 
+## Do Check Out ExPro 🔬:
 
+[![ExPro](https://img.shields.io/badge/ExPro-152238?style=for-the-badge&logo=Streamlit&logoColor=white)](https://hrishikesh332-expro-explore-protein-3d-app-z34r6v.streamlit.app/)
 
 <details>
   <summary>Table of Contents</summary>
