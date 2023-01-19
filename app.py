@@ -55,7 +55,7 @@ lottie_s=load_lottiefile("suggestion.json")
 selected = option_menu(
             menu_title=None,  
             options=["Explore","ChemPlay","X-Mol", "Suggestion"],  
-            icons=["badge-3d-fill", "joystick", "reply-all-fill"],  
+            icons=["badge-3d-fill", "joystick", "book","reply-all-fill"],  
             menu_icon="cast",  
             default_index=0,  
             orientation="horizontal",
@@ -176,9 +176,9 @@ if (selected=="ChemPlay"):
     choices3 = ['Defend Body from harmful microorganisms', 'Hair', 'Muscle','None of these']
     choices4 = ['True','False']
 
-    qs1 = [('What is the central atom in an Amino Acid?', choices1),
+    q1 = [('What is the central atom in an Amino Acid?', choices1),
         ('What determines a Proteins function?', choices2)]
-    qs2 = [('hich of these is NOT a function of Protein?', choices3),
+    q2 = [('hich of these is NOT a function of Protein?', choices3),
         ('Athletes need much more protein than other people?', choices4)]
 
 
@@ -192,7 +192,7 @@ if (selected=="ChemPlay"):
                         
                 if st.form_submit_button():
                     st.session_state.num += 1
-                    if st.session_state.num >= 3:
+                    if st.session_state.num >= 2:
                         st.session_state.num = 0
                     placeholder.empty()
                 else:
@@ -272,6 +272,57 @@ if (selected=="X-Mol"):
 
     st.markdown("---")
     st.subheader("Time to learn smiles and get into the world of Molecules 🌎")
+    st.markdown("---")
+    st.subheader("Rules 📄")
+    st.caption("Game can't be played, without Rules:")
+    st.text('')
+    st.write('''
+    1. Each non-hydrogen atom is specified independently by its atomic symbol enclosed in square brackets [ ].
+    
+    2. Square brackets may be omitted for elements in the “organic subset” (B, C, N, O, P, S, F, Cl, Br, and I) if the proper number of implicit hydrogen atoms ⚛.
+    
+    3. Explicitly attached hydrogens and formal charges are always specified inside brackets【 】.
+    ''')
+    col7, col8 = st.columns(2)
+    with col7:
+
+
+        st.subheader("🔹 Symbols used to represent the bonds:")
+        st.text("")
+        st.text("")
+        st.text("")
+        st.text("")
+        st.write(
+            '''
+            Single Bond   ----->  -
+
+            Double Bond   ----->  =
+
+            Triple Bond   ----->  #
+
+            Aromatic Bond -----> :
+
+            '''
+        )
+    with col8:
+        st.subheader("🔹 Examples")
+        st.code(
+            '''
+SMILES       Name      Molecular
+
+CC        Ethane          (CH3CH3)
+
+C=C       Ethene          (CH2CH2)
+
+C#C       Ethyne           (CHCH)
+
+COC    Dimethyl ether     (CH3OCH3)
+
+CC=O   Acetaldehyde       (CH3-CH=O)
+
+C#N    Hydrogen Cyanide      (HCN)
+            '''
+        )
     st.markdown("---")
     st.subheader("I guess 🤔, you're ready now. To make your own smiles")
 
