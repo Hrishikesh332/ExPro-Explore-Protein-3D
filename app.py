@@ -61,13 +61,8 @@ selected = option_menu(
             orientation="horizontal",
         )
 size=20
-
-if (selected=="Explore"):
-    st.markdown(page, unsafe_allow_html=True)
-    st.markdown("<h1 style='text-align: center; '>ExPro - Explore Protein 3D 👨‍🔬</h1>", unsafe_allow_html=True)
-    st.markdown("---")
-
-
+def side():
+    
     with st.sidebar:
         
         st.image("expro.png")
@@ -85,6 +80,12 @@ if (selected=="Explore"):
         ''')
         st.header("Check out this and do give a ⭐ star on github to [ExPro](https://github.com/Hrishikesh332/ExPro-Explore-Protein-3D)")
 
+
+if (selected=="Explore"):
+    side()
+    st.markdown(page, unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; '>ExPro - Explore Protein 3D 👨‍🔬</h1>", unsafe_allow_html=True)
+    st.markdown("---")
 
 
     sequence = "MGSSHHHHHHSQDLMVTSTYIPMSQRRSWADVKPIMQDDGPNPVVPIMYSEEYKDAMDYFRAIAAKEEKSERALELTEIIVRMNPAHYTVWQYRFSLLTSLNKSLEDELRLMNEFAVQNLKSYQVWHHRLLLLDRISPQDPVSEIEYIHGSLLPDPKNYHTWAYLHWLYSHFSTLGRISEAQWGSELDWCNEMLRVDGRNNSAWGWRWYLRVSRPGAETSSRSLQDELIYILKSIHLIPHNVSAWNYLRGFLKHFSLPLVPILPAILPYTASKLNPDIETVEAFGFPMPSDPLPEDTPLPVPLALEYLADSFIEQNRVDDAAKVFEKLSSEYDQMRAGYWEFRRRECAE"
@@ -165,6 +166,7 @@ if (selected=="Explore"):
         st.balloons()
 
 if (selected=="ChemPlay"):
+    side()
     st.markdown("<h1 style='text-align: center; '>ChemPlay - Let's Play Quiz 🎮</h1>", unsafe_allow_html=True)
     st.markdown("---")
     if 'num' not in st.session_state:
@@ -202,6 +204,7 @@ if (selected=="ChemPlay"):
     quiz()
 
 if (selected=="Suggestion"):
+    side()
     st.title("Suggestions:")
     st_lottie(
     lottie_s,
@@ -216,6 +219,7 @@ if (selected=="Suggestion"):
     st.write("We are here to help you out, if you have any query/issues or wanted to add on any new features which would help others too. Do raise the issue here: [ExPro Issues](https://github.com/Hrishikesh332/ExPro-Explore-Protein-3D/issues)")
 
 if (selected=="X-Mol"):
+    side()
     
     def mol(smi):
         mol = Chem.MolFromSmiles(smi)
